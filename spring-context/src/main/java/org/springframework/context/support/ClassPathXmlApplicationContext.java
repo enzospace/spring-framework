@@ -71,6 +71,10 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @see #setConfigLocations
 	 * @see #afterPropertiesSet()
 	 */
+	/**
+	 * 但已存在beanFactory需要指定父子关系时调用该构造函数
+	 * @param parent
+	 */
 	public ClassPathXmlApplicationContext(ApplicationContext parent) {
 		super(parent);
 	}
@@ -139,6 +143,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 			throws BeansException {
 
 		super(parent);
+		// 处理成配置文件路径数组(以分号、逗号、空格、tab、换行符分隔)
 		setConfigLocations(configLocations);
 		if (refresh) {
 			refresh();
